@@ -19,6 +19,8 @@ class TestCustomer < MiniTest::Test
     @drink3 = Drink.new("Famous Grouse", 7, 0.4)
 
     # @stock = [@drink1, @drink2, @drink3]
+    @burger = Food.new("burger", 5)
+
     @stock = {
       @drink1 => 3,
       @drink2 => 2,
@@ -40,7 +42,19 @@ class TestCustomer < MiniTest::Test
   def test_buy_drink()
     @customer1.buy_drink(@pub, @drink1)
     assert_equal(494, @customer1.wallet)
+    assert_equal(2006, @pub.till)
+    assert_equal(1, @customer1.drunkness_level)
   end
 
+  def test_reduce_drunkness_level
+    @customer1.buy_drink(@pub, @drink1)
+    @customer1.eat(@burger)
+    assert_equal(0, @customer1.drunkness_level)
+  end
+  #
+  def test_buy_food
+    @customer1.eat(@burger)
+    assert_equal(495, @customer1.wallet)
+  end
 
 end

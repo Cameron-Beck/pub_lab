@@ -7,4 +7,5 @@ class Food
     @price = price
   end
 
+
 end
