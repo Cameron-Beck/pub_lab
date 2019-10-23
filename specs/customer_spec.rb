@@ -20,12 +20,27 @@ class TestCustomer < MiniTest::Test
 
     # @stock = [@drink1, @drink2, @drink3]
     @stock = {
-      @drink1 = 3,
-      @drink2 = 2,
-      @drink3 = 4,
+      @drink1 => 3,
+      @drink2 => 2,
+      @drink3 => 4
     }
   end
 
+  def test_has_attr
+    assert_equal("Cameron", @customer1.name)
+    assert_equal(500, @customer1.wallet)
+    assert_equal(69, @customer1.age)
+    assert_equal(0, @customer1.drunkness_level)
+  end
+
+  def test_pub_stock_level
+    assert_equal(3,@stock[@drink1])
+  end
+
+  def test_buy_drink()
+    @customer1.buy_drink(@pub, @drink1)
+    assert_equal(494, @customer1.wallet)
+  end
 
 
 end

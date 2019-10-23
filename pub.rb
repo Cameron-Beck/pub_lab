@@ -1,6 +1,6 @@
 class Pub
 
- attr_reader :name, :stock, :till
+ attr_accessor :name, :stock, :till
 
  def initialize(name, till, stock)
    @name = name
@@ -8,6 +8,9 @@ class Pub
    @stock = stock
  end
 
+ def reduce_stock(drink)
+   @stock.each{ |drink| drink -= 1 if drink == drink }
+ end
 
 
 end
